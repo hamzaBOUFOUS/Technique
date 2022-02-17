@@ -3,6 +3,9 @@ package com.example.technique.services;
 import com.example.technique.entities.CoordonneGPS;
 import com.example.technique.repositories.CoordonneGPSRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +19,11 @@ public class CoordonneGPSService {
         this.coordonneGPSRepositorie = coordonneGPSRepositorie;
     }
 
-    public List<CoordonneGPS> getAllCoor() {
+    public Page<CoordonneGPS> getAllCoor(Integer page, Integer size) {
+        return coordonneGPSRepositorie.findAll(PageRequest.of(page, size));
+    }
+
+    public List<CoordonneGPS> getAllListCoor() {
         return coordonneGPSRepositorie.findAll();
     }
 

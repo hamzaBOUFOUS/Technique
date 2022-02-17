@@ -3,6 +3,8 @@ package com.example.technique.ressources;
 import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,10 +33,16 @@ public class CoordonneGPSRessource {
         this.coordonneGPSService = coordonneGPSService;
     }
 
-    @GetMapping("/listcoor")
-    public List<CoordonneGPS> ListMapPage(){
-        return coordonneGPSService.getAllCoor();
+    @GetMapping("/Pagecoor")
+    public Page<CoordonneGPS> ListMapPage(@RequestParam("page") Integer page, @RequestParam("size") Integer size){
+        return coordonneGPSService.getAllCoor(page, size);
     }
+
+    @GetMapping("/listcoor")
+    public List<CoordonneGPS> ListMap(){
+        return coordonneGPSService.getAllListCoor();
+    }
+
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file){

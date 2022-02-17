@@ -8,6 +8,13 @@ import { map } from 'rxjs/operators';
 export class GpsService {
     constructor(private http: HttpClient) { }
     url = 'http://localhost:8080';
+    getPageCoord(pageNumber = 0, pageSize = 20) {
+        return this
+            .http
+            .get(`${this.url}/gps/Pagecoor?page=${pageNumber}&size=${pageSize}`)
+            .pipe(map((resp) => resp));;
+    }
+    
     getListCoord() {
         return this
             .http

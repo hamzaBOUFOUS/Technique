@@ -7,22 +7,29 @@ import { GpsService } from 'src/services/gps.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-
+  public totalPages : Array<number>;
+  public page = 0;
   public list;
   public lenList = 0;
   constructor(private gpsService: GpsService) { }
 
   ngOnInit(): void {
-    this.listCoord();
+    this.listCoord(this.page);
   }
 
-  listCoord():void{
-    this.gpsService.getListCoord().subscribe((data) => {
-      this.list = data;
-      this.lenList = this.list?this.list.length:0;
+  listCoord(index): void {
+    this.gpsService.getPageCoord(index, 20).subscribe((data) => {
+      this.list = data['content'];
+      this.totalPages  = new Array(data['totalPages']);
+      this.lenList = data['content']['length'];
     }, (err) => {
       console.log(err.toString());
     });
+  }
+
+  nextPage(index) {
+    this.page = index;
+    this.listCoord(index);
   }
 
 }

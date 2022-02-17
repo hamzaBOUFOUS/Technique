@@ -18,7 +18,6 @@
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
-    "@types/leaflet": "^1.7.9",
     "bootstrap": "^4.4.1",
     "leaflet": "^1.7.1",
     "leaflet.animatedmarker": "^1.0.0",

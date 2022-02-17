@@ -73,12 +73,12 @@ export class AnimationComponent implements OnInit {
 
   private polyline(polylinePoints): void {
     var polyline = L.polyline(polylinePoints).addTo(this.map);
-    //this.animatedMarker = L.animatedMarker(polyline.getLatLngs(), {
-    //  icon
-    //});
-    //this.map.addLayer(this.animatedMarker);
-    //const group =  L.featureGroup([this.animatedMarker]);
-    //this.map.fitBounds(group.getBounds());
+    this.animatedMarker = L.animatedMarker(polyline.getLatLngs(), {
+      icon,
+      distance: 300,
+      interval: 3000,
+    });
+    this.map.addLayer(this.animatedMarker);
   }
 
 }
